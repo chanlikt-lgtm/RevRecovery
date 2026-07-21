@@ -32,9 +32,14 @@ independent ways.
 | **Fig. 8** | `fig8_sweepout.py` | sweeping-out by strong reverse current `iR = 10 iF` |
 | **Fig. 9** | `fig9_storage_time.py` | storage times `t0l, t0r` vs `iR/iF`, `d=L` and `d=L/2` |
 
-Each is produced by **two independent solvers** — the paper's closed forms
-(Eq. 21 forward, Eq. 36 transient) and a numerical ambipolar PDE — which agree
-throughout (the primary correctness check).
+Each is produced by **three independent solvers** — the paper's closed forms
+(Eq. 21 forward, Eq. 36 transient), a numerical ambipolar PDE, and a
+**Laplace-transform (operational) closed form inverted by the Talbot method**
+(`laplace_solver.py`) — which agree throughout (the primary correctness check).
+`fig8_three_methods.py` overlays all three: Laplace ≡ Eq. 36 to **2.5×10⁻⁸**
+(same closed form, independent inversion), PDE to **3.5×10⁻⁴** (discretization).
+The Laplace solution's poles `s = −1/τ − D(mπ/d)²` are exactly Eq. 36's decay
+rates — an analytic cross-check.
 
 ### Stage 2 — space charge & voltage recovery (Sections IV–VII)
 
@@ -88,6 +93,8 @@ uncertain input and is flagged with its sensitivity range in `materials.py`.
 benda_spenke_model.py        Stage-1 core: Device, forward_profile (Eq.21),
                              n_analytic (Eq.36), solve_transient (PDE),
                              storage_times (Eq.37/38)
+laplace_solver.py            3rd solver: Laplace-domain N(x,s) + Talbot inverse
+fig8_three_methods.py        PDE / Eq.36 / Laplace overlay + agreement plot
 space_charge_model.py        Stage-2 core: boundary kinematics (Eq.46-49),
                              sqrt-field / voltage (Eq.54-61), doped/Schottky
                              solver (Eq.62), voltage_recovery

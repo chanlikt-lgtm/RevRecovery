@@ -99,6 +99,11 @@ def main():
                   os.path.join(HERE, "fig7_recombination_decay.png"),
                   None,
                   "MODEL Fig. 7: t/tau = 0 ... 3.0", "")
+        pair_page(pdf, "Validation -- sweep-out solved 3 independent ways",
+                  os.path.join(HERE, "fig8_three_methods.png"),
+                  None,
+                  "PDE / Fourier series Eq.36 / Laplace-Talbot agree: "
+                  "Laplace≡Eq.36 to 1e-8, PDE to 1e-4", "")
         pair_page(pdf, "Fig. 9 -- storage (delay) times vs iR/iF",
                   os.path.join(HERE, "fig9_storage_time.png"),
                   paper_crop(7, (0.05, 0.05, 0.55, 0.34)),

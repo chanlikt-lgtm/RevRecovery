@@ -184,6 +184,36 @@ validation, in lieu of a test suite.
 
 ---
 
+## 5b. Third solver — Laplace transform (operational method)
+
+An independent third route to the same transient (`laplace_solver.py`), sharing
+no code with the Fourier series (§4) or the finite-difference PDE (§5).
+Laplace-transforming Eq. (19) in time, `N(x,s) = L{n(x,t)}`:
+
+```
+D N'' - (s + 1/τ) N = -n0(x)   =>   N'' - k² N = -n0(x)/D ,   k = √((s+1/τ)/D).
+```
+
+Because `k² - 1/L² = s/D` **exactly** (`L² = Dτ`), the particular solution is
+simply `n0(x)/s`; the step-change Neumann gradients (forward→reverse at t=0,
+transform `(g_rev - g_fwd)/s`) fix the homogeneous part, giving the closed form
+
+```
+N(x,s) = n0(x)/s
+         - (iF+iR)/(2 q D s k) [ cosh(kx)/sinh(kd) - B sinh(kx)/cosh(kd) ].
+```
+
+Its poles `sinh(kd)=0`, `cosh(kd)=0` sit at `s = -1/τ - D(mπ/d)²` and
+`s = -1/τ - D((m+½)π/d)²` — **exactly the decay rates of the Fourier series
+Eq. (36)** (`(mπL/d)²/τ = D(mπ/d)²`). So the Laplace form is the same solution
+in operational disguise. Inverting it numerically (fixed **Talbot contour**,
+Abate & Valkó 2004) is a genuinely independent numerical method. Validation
+(`fig8_three_methods.py`): Talbot reproduces `e^{-at}` to ~10⁻⁸; the Laplace
+profiles match Eq. (36) to **2.5×10⁻⁸** and the PDE to **3.5×10⁻⁴**; all three
+give identical storage times. The three methods are the diffusion-problem
+analogue of the SOI Fig. 4 finite-volume / conformal-map / Green's-function
+trio.
+
 ## 6. Storage (delay) times (Eqs. 37, 38 — Fig. 9)
 
 Because the border concentrations fall fast, the instant a space-charge zone
