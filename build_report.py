@@ -104,6 +104,11 @@ def main():
                   None,
                   "PDE / Fourier series Eq.36 / Laplace-Talbot agree: "
                   "Laplace≡Eq.36 to 1e-8, PDE to 1e-4", "")
+        pair_page(pdf, "Validation -- solver convergence & cost",
+                  os.path.join(HERE, "fig_methods_convergence.png"),
+                  None,
+                  "Fourier: Gaussian (5 terms->1e-4); Talbot: spectral "
+                  "(6 nodes->1e-4, opt M~16); PDE: O(dt) (1600 steps->1e-4)", "")
         pair_page(pdf, "Fig. 9 -- storage (delay) times vs iR/iF",
                   os.path.join(HERE, "fig9_storage_time.png"),
                   paper_crop(7, (0.05, 0.05, 0.55, 0.34)),
