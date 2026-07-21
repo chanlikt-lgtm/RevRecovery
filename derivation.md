@@ -317,6 +317,43 @@ The reproduction recovers the `N→0` `^{3/2}` law and, for `N = 2×10¹⁵`, a 
 `w²` exponent of **2.02** (theory 2), reproducing the paper's statement that a
 Schottky zone (`U ∝ (d−a)²`) forms and soon dominates the rectifier voltage.
 
+### 7.5 Conformal mapping — 2-D edge field of the doped zone
+
+Conformal mapping does **not** apply to the 1-D diffusion transient (§4–5b) —
+that is heat/screened-Poisson, not a 2-D harmonic field. It **does** apply to
+the **doped/Schottky** space-charge zone (§7.3): there the charge is constant
+(`ρ = qN`), so in 2-D the potential splits exactly as in the SOI Nakagawa Fig-4
+method (`fig4_conformal.py`),
+
+```
+phi(x,y) = phi_p(y) + psi(x,y),
+```
+
+a 1-D parabolic particular part `phi_p` (carrying `qN`, Poisson) plus a
+**source-free harmonic** `psi` (Laplace) that carries the 2-D boundary shape.
+At a device edge the highly-doped contact forms a corner; modelling it as a 90°
+conducting wedge (field region 270° = `α`), the map `ζ = z^{π/α} = z^{2/3}`
+sends the wedge to a half-plane where the potential is linear. Mapping back,
+
+```
+psi = C Im(z^{2/3}),   W(z) = -i C z^{2/3},
+E_x - i E_y = -W'(z) = i C (2/3) z^{-1/3}   =>   |E| ∝ r^{-1/3},
+```
+
+the classic corner singularity. Fixing `C` so `|E| → F_1D` at `r = w` (the zone
+width) gives the enhancement law `|E|/F_1D = (w/r)^{1/3}`, finite at the corner
+rounding radius `r_c`. (`fig_conformal_edge.py`; harmonicity verified to
+`|∇²φ| ~ 2×10⁻⁷` by the numerical Laplacian.)
+
+**Consequence.** Applied to the fixed-100 µm-base peak fields (§ materials), a
+1 µm corner crowds the field ~4×, so **Si (edge field 258 % of Ec) and GaN
+(129 %) reach edge avalanche** while their 1-D bulk looked safe (60 % / 28 %);
+**4H-SiC (78 %) survives** thanks to its larger critical-field headroom. Edge
+termination — invisible to the paper's 1-D model — is what actually limits
+reverse-recovery ruggedness. This is the diffusion-problem workspace's genuine
+use of conformal mapping, mirroring the SOI Fig-4 finite-volume / conformal /
+Green's-function trio.
+
 ### 7.4 Still out of scope
 
 Only Section VIII–X (experimental oscilloscope traces, lifetime measurements,

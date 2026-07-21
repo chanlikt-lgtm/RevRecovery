@@ -106,6 +106,8 @@ materials.py                 cited Si / 4H-SiC / GaN parameter sets
 fig_materials_compare.py     4-panel Si/SiC/GaN comparison
 fig_materials_extra.py       waveform, Fig.9-style storage times, avalanche margin
 fig_materials_fixedgeom.py   fixed 100um-base comparison (comparable peaks)
+fig_conformal_edge.py        conformal map: 2-D space-charge edge field crowding
+methods_comparison.py        accuracy/iterations/convergence of the 3 solvers
 verify.py                    model-vs-paper / self-consistency table
 compare.py                   side-by-side vs paper + accuracy table
 build_report.py              assembled PDF (renders paper crops on the fly)

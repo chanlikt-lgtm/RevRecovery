@@ -183,6 +183,28 @@ def main():
             p = os.path.join(HERE, png)
             if os.path.exists(p):
                 pair_page(pdf, "Extension -- " + png, p, None, "MODEL: " + cap, "")
+
+        # --- conformal-mapping extension: 2-D space-charge edge field ---
+        text_page(
+            pdf, "Extension -- conformal mapping: 2-D space-charge edge field",
+            "Conformal mapping does NOT apply to the 1-D diffusion transient.\n"
+            "It DOES apply to the doped/Schottky space-charge zone (Sec. VI):\n"
+            "constant charge rho=qN -> phi = phi_p(y) + psi(x,y), a 1-D parabolic\n"
+            "particular part + a SOURCE-FREE harmonic psi (same split as the SOI\n"
+            "Nakagawa Fig-4 method).  At a 90-deg junction/contact corner the\n"
+            "map zeta = z^{2/3} gives the classic r^{-1/3} field crowding\n"
+            "|E|/F_1D = (w/r)^{1/3}.  Applied to the fixed-100um-base fields:\n"
+            "the 2-D edge crowds the field ~4x, so Si (258% of Ec) and GaN\n"
+            "(129%) reach EDGE avalanche while their 1-D bulk looked safe;\n"
+            "4H-SiC (78%) survives.  Edge termination -- invisible to the\n"
+            "paper's 1-D model -- sets reverse-recovery ruggedness.\n\n"
+            "Harmonicity self-check: max |Laplacian(phi)| ~ 2e-7.",
+        )
+        pcf = os.path.join(HERE, "fig_conformal_edge.png")
+        if os.path.exists(pcf):
+            pair_page(pdf, "Extension -- conformal edge field crowding", pcf,
+                      None, "MODEL: (a) corner field map (zeta=z^{2/3}) "
+                      "(b) enhancement + edge avalanche", "")
     print("wrote", out)
 
 
