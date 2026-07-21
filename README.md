@@ -111,6 +111,7 @@ methods_comparison.py        accuracy/iterations/convergence of the 3 solvers
 verify.py                    model-vs-paper / self-consistency table
 compare.py                   side-by-side vs paper + accuracy table
 build_report.py              assembled PDF (renders paper crops on the fly)
+benda_spenke_full.tex        FULL LaTeX report (theory->derivation->plots, 12pp)
 derivation.md                full derivation (Eq. 19-62, section by section)
 README.md                    this file
 fig*.png / compare_*.png     generated figures
@@ -130,7 +131,18 @@ python fig4_forward_profile.py
 python fig7_recombination_decay.py
 python fig8_sweepout.py
 python fig9_storage_time.py
-python build_report.py         # -> benda_spenke_report.pdf
+python build_report.py         # -> benda_spenke_report.pdf (matplotlib PdfPages)
+python methods_comparison.py   # solver accuracy/convergence benchmark
+python fig_conformal_edge.py   # conformal 2-D edge-field extension
+```
+
+Full LaTeX report (needs a TeX toolchain; this environment uses WSL) -- run
+pdflatex three times for the ToC/refs:
+
+```bash
+wsl bash -c "cd /mnt/e/MATERIAL/PIN && pdflatex benda_spenke_full.tex && \
+             pdflatex benda_spenke_full.tex && pdflatex benda_spenke_full.tex"
+# -> benda_spenke_full.pdf  (theory -> derivation -> methods -> simulation -> plots)
 ```
 
 ## Notes
