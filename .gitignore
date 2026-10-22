@@ -6,3 +6,6 @@ __pycache__/
 *.log
 *.out
 *.toc
+
+# copyrighted source paper — kept locally, not redistributed
+Reverse_recovery_processes_in_silicon_power_rectifiers  IEEE.pdf
